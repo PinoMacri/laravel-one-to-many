@@ -30,29 +30,25 @@
 <header id="myIndex">
 <div class="container">
     <h1 class="my-4">Progetti</h1>
-    <div class="d-flex justify-content-between mb-3">
-      <a class="btn mb-3 btn-small btn-success" href="{{route("admin.projects.create")}}">Aggiungi <i class="fa-solid fa-plus"></i></a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <a class="btn btn-small btn-success" href="{{route("admin.projects.create")}}">Aggiungi <i class="fa-solid fa-plus"></i></a>
       <a href="{{route("admin.projects.trash.index")}}">Cestino</a>
       <div class="d-flex">
-        <form action="{{route("admin.projects.index")}}" method="GET">
-          <div class="input-group pe-3">
-            <button class="btn btn-outline-secondary" type="submit">Filtra</button>
-            <select class="form-select" name="filter" id="filter">
-              <option {{ $filter === null ? 'selected' : '' }} value="">Tutti</option>
-              <option {{ $filter === 'pubblicati' ? 'selected' : '' }} value="pubblicati">Pubblicati</option>
-              <option {{ $filter === 'bozze' ? 'selected' : '' }} value="bozze">Bozze</option>
-          </select>
-          
-          </div>
-        </form>
-        
-        
-        <form method="GET" action="{{route("admin.projects.index")}}">
-          <div class="input-group ">
-            <button class="btn btn-outline-secondary" type="submit">Cerca</button>
-            <input type="text" class="form-control" placeholder="Nome Progetto" name="search" value="{{ old('search', $search) }}">
-            <input type="hidden" name="filter" value="{{ session('filter') }}">
-          </div>
+       
+        <form action="{{route("admin.projects.index")}}" method="GET" class="d-flex align-items-center my-filtered">
+        <select class="form-select me-3" name="type_filter" id="type_filter">
+          <option value="">Tutti i Tipi</option>
+          @foreach($types as $type)
+          <option @if ($type_filter==$type->id) selected @endif value="{{$type->id}}">{{$type->label}}</option>
+          @endforeach
+        </select>
+
+        <select name="status_filter" class="form-select">
+          <option value="">Tutti i Stati</option>
+          <option @if($status_filter=="pubblicati") selected @endif value="published">Pubblicati</option>
+          <option @if($status_filter=="bozze") selected @endif value="bozze">Bozze</option>
+        </select>
+        <button type="submit" class="btn btn-primary ms-3">Filtra</button>
         </form>
         
       </div>
@@ -103,7 +99,7 @@
           </tr>
            @empty
             <tr>
-                <th scope="row" colspan="5" class="text-center">Non ci sono Progetti</th>
+                <th scope="row" colspan="7" class="text-center">Non ci sono Progetti</th>
             </tr>
            @endforelse
           </tbody>
