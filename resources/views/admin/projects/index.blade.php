@@ -4,21 +4,32 @@
 
 @section("content")
 @if(session("delete"))
-<div class="alert alert-danger text-center">
-{{session("delete")}}
+<div class="alert alert-danger alert-dismissible text-center">
+  <div class="d-flex justify-content-center">
+    <p class="my-alert d-inline m-0">{{session("delete")}}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 </div>
 @endif
 
 @if(session()->has('msg'))
-    <div class="alert text-center alert-{{ session('type') }}">
-        {{ session('msg') }}
+    <div class="alert alert-{{ session('type') }} alert-dismissible text-center">
+        <div class="d-flex justify-content-center">
+            {{ session('msg') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 @endif
+
 @if(session('message'))
-    <div class="alert text-center alert-{{ session('type') }}">
-        {{ session('message') }}
+    <div class="alert alert-{{ session('type') }} alert-dismissible text-center">
+        <div class="d-flex justify-content-center">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 @endif
+
 
 @foreach ($projects as $project)
 <div class="alert text-center alert-success alert-dismissible fade show" role="alert" style="display:none;" id="create-success-alert">

@@ -4,10 +4,14 @@
 
 @section ("content")
 @if (session("success"))
-    <div class="alert alert-warning text-center">
-        {{ session("success") }}
+    <div class="alert alert-warning alert-dismissible text-center">
+        <div class="d-flex justify-content-center">
+            {{ session("success") }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 @endif
+
 <header>
     <div class="container">
         <h1 class="my-5">

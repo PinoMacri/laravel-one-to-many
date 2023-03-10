@@ -30,11 +30,13 @@
       <option value="{{$type->id}}"@if($project->type_id == $type->id) selected @endif>{{$type->label}}</option>
       @endforeach  
       </select> 
+      @if($errors->has("type_id"))
       <ul class="alert list-unstyled alert-danger m-0  d-flex flex-column justify-content-center">
         @foreach ($errors->get('type_id') as $error)
             <li class="m-0">{{ $error }}</li>
         @endforeach
         </ul>
+        @endif
       </div>        
     </div>
       <!-- GIT Hub -->
