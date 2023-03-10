@@ -1,0 +1,27 @@
+.table-index {
+    border: 4px solid rgb(136, 113, 10);
+
+    tr {
+        border-bottom: 1px solid rgb(136, 113, 10);
+
+        td {
+            padding: 8px 10px;
+            line-height: 41px;
+
+            p {
+                border-radius: 20px;
+            }
+        }
+    }
+
+    .my-th {
+        text-align: center;
+        line-height: 41px;
+        color: rgb(136, 113, 10) !important;
+    }
+
+    .my-id {
+        line-height: 41px;
+        text-align: center;
+    }
+}

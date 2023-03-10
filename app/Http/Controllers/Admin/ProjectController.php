@@ -50,7 +50,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("admin.projects.create");
+        $project=new Project();
+        $types=Type::all();
+        return view("admin.projects.create", compact("project","types"));
     }
 
     /**
@@ -63,6 +65,7 @@ class ProjectController extends Controller
         "description"=>"required|string",
         "image"=>"image|nullable|mimes:jpeg,jpg,png",
         "github"=>"required|url|max:100",
+        "type_id"=>"exists:types,id"
         ], [
             "title.required" => "ERROR - il titolo è obbligatorio",
             "title.unique" => "ERROR - il titolo $request->title è gia presente",
@@ -73,6 +76,7 @@ class ProjectController extends Controller
             "github.required" => "ERROR - il link al progetto è obbligatorio",
             "github.url"=> "ERROR - devi inserire un URL",
             "github.max"=> "ERROR - la lunghezza del titolo non deve superare i 100 caratteri, controlla che sia un link github",
+            "type_id"=>"ERROR - tipo non valido"    
         ]);
         $data = $request->all();
         $project=new Project();
@@ -116,7 +120,7 @@ class ProjectController extends Controller
             "description"=>"required|string",
             "image"=>"image|nullable|mimes:jpeg,jpg,png",
             "github"=>"required|url|max:100",
-            "type_id"=>"nullable|exists:types,id"
+            "type_id"=>"exists:types,id"
             ], [
                 "title.required" => "ERROR - il titolo è obbligatorio",
                 "title.min" => "ERROR - la lunghezza del titolo deve essere almeno di 5 caratteri",

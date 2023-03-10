@@ -58,25 +58,25 @@
       </div>
     </div>
    
-    <table class="table table-dark table-striped-columns">
+    <table class="table table-dark table-striped-columns table-index">
         <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Titolo</th>
-              <th scope="col">Type</th>
-              <th scope="col">Descrizione</th>
-              <th scope="col">GIT Hub</th>
-              <th scope="col">Stato</th>
-              <th scope="col"></th>
+              <th class="my-th" scope="col">ID</th>
+              <th class="my-th" scope="col">Titolo</th>
+              <th class="my-th" scope="col">Tipo</th>
+              <th class="my-th" scope="col">Descrizione</th>
+              <th class="my-th" scope="col">GIT Hub</th>
+              <th class="my-th" scope="col">Stato</th>
+              <th class="my-th" scope="col">Azione</th>
 
             </tr>
           </thead>
           <tbody>
            @forelse ($projects as $project)
            <tr>
-            <th scope="row">{{$project->id}}</th>
+            <th class="my-id" scope="row">{{$project->id}}</th>
             <td>{{$project->title}}</td>
-            <td>{{$project->type?->label}} </td>
+            <td><p class="p-0 text-center m-0" style="background-color: {{$project->type->color}}">{{$project->type->label}}</p></td>
             <td>{{ Str::limit($project->description, 50)}}</td>
             <td>{{ Str::limit($project->github, 20)}}</td>
             <td>

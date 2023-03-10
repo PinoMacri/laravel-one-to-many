@@ -12,17 +12,29 @@
      <form class="row g-3" action="{{route("admin.projects.store")}}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Titolo -->
-        <div class="col-md-6">
-          <label for="title" class="form-label">Titolo</label>
-          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" @error("title") value="" @enderror value="{{ old('title') }}">
-        @if($errors->has("title"))
-        <ul class="alert list-unstyled alert-danger m-0  d-flex flex-column justify-content-center">
-        @foreach ($errors->get('title') as $error)
-            <li class="m-0">{{ $error }}</li>
-        @endforeach
-        </ul>
-        @endif
-        </div>
+        <div class="d-flex">
+          <div class="col-md-6">
+              <label for="title" class="form-label">Titolo</label>
+              <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $project->title) }}">
+            @if($errors->has("title"))
+            <ul class="alert list-unstyled alert-danger m-0  d-flex flex-column justify-content-center">
+            @foreach ($errors->get('title') as $error)
+                <li class="m-0">{{ $error }}</li>
+            @endforeach
+            </ul>
+            @endif
+            </div>
+            <!-- Tipo -->
+            <div>
+            <label for="type_id" class="form-label">Tipi</label>
+            <select class="form-select" name="type_id" id="type_id">
+            <option value="">Nessun Tipo</option>
+            @foreach($types as $type)
+            <option value="{{$type->id}}"@if($project->type_id == $type->id) selected @endif>{{$type->label}}</option>
+            @endforeach  
+            </select>  
+            </div>        
+          </div>
         <!-- GIT Hub -->
         <div class="col-md-6">
           <label for="github" class="form-label">Link GIT-Hub</label>
