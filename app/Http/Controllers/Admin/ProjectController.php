@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -100,7 +101,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view ("admin.projects.edit", compact("project"));
+        $types=Type::all();
+        return view ("admin.projects.edit", compact("project","types"));
     }
 
     /**
@@ -114,6 +116,7 @@ class ProjectController extends Controller
             "description"=>"required|string",
             "image"=>"image|nullable|mimes:jpeg,jpg,png",
             "github"=>"required|url|max:100",
+            "type_id"=>"nullable|exists:types,id"
             ], [
                 "title.required" => "ERROR - il titolo è obbligatorio",
                 "title.min" => "ERROR - la lunghezza del titolo deve essere almeno di 5 caratteri",
@@ -123,6 +126,7 @@ class ProjectController extends Controller
                 "github.required" => "ERROR - il link al progetto è obbligatorio",
                 "github.url"=> "ERROR - devi inserire un URL",
                 "github.max"=> "ERROR - la lunghezza del titolo non deve superare i 100 caratteri, controlla che sia un link github",
+                "type_id"=>"ERROR - tipo non valido"
             ]);
             if(Arr::exists($data,"image")){
                 if($project->image)Storage::delete($project->image);

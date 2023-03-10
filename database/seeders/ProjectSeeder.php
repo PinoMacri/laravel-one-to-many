@@ -20,7 +20,7 @@ class ProjectSeeder extends Seeder
             $new_project->description=$project["description"];
            // $new_project->image=$project["image"];
             $new_project->github=$project["github"];
-            $new_project->is_published=$project["published"];
+            $new_project->is_published=$project["is_published"];
             $new_project->save();
         }
     }

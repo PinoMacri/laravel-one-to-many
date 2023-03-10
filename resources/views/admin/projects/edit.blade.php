@@ -8,6 +8,8 @@
     <form action="{{route ("admin.projects.update", $project->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method("PUT")
+    <!-- Titolo -->
+    <div class="d-flex">
     <div class="col-md-6">
         <label for="title" class="form-label">Titolo</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $project->title) }}">
@@ -19,6 +21,17 @@
       </ul>
       @endif
       </div>
+      <!-- Tipo -->
+      <div>
+      <label for="type_id" class="form-label">Tipi</label>
+      <select class="form-select" name="type_id" id="type_id">
+      <option value="">Nessun Tipo</option>
+      @foreach($types as $type)
+      <option value="{{$type->id}}"@if($project->type_id == $type->id) selected @endif>{{$type->label}}</option>
+      @endforeach  
+      </select>  
+      </div>        
+    </div>
       <!-- GIT Hub -->
       <div class="col-md-6">
         <label for="github" class="form-label">Link GIT-Hub</label>
