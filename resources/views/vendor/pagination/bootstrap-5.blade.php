@@ -28,7 +28,7 @@
 
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
             <div>
-                <p class="small text-muted">
+                <p class="small text-white">
                     {!! __('Stai vedendo') !!}
                     <span class="fw-semibold">10 Progetti</span>
                     

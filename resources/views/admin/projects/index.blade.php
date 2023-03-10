@@ -29,7 +29,7 @@
 
 <header id="myIndex">
 <div class="container">
-    <h1 class="my-4">Progetti</h1>
+    <h1 data-text="Progetti" id="titolo" class="my-4">Progetti</h1>
     <div class="d-flex justify-content-between align-items-center mb-4">
       <div>
         <a class="btn btn-small btn-success" href="{{route("admin.projects.create")}}">Aggiungi <i class="fa-solid fa-plus"></i></a>
