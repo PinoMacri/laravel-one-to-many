@@ -43,11 +43,15 @@
           @endforeach
         </select>
 
-        <select name="status_filter" class="form-select">
+        <select name="status_filter" class="form-select me-3">
           <option value="">Tutti i Stati</option>
           <option @if($status_filter=="pubblicati") selected @endif value="published">Pubblicati</option>
           <option @if($status_filter=="bozze") selected @endif value="bozze">Bozze</option>
         </select>
+
+          <input type="text" placeholder="Nome Progetto" name="search" value="{{old("search",$search)}}">
+
+
         <button type="submit" class="btn btn-primary ms-3">Filtra</button>
         </form>
         
