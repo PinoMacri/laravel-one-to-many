@@ -31,8 +31,10 @@
 <div class="container">
     <h1 class="my-4">Progetti</h1>
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <a class="btn btn-small btn-success" href="{{route("admin.projects.create")}}">Aggiungi <i class="fa-solid fa-plus"></i></a>
-      <a href="{{route("admin.projects.trash.index")}}">Cestino</a>
+      <div>
+        <a class="btn btn-small btn-success" href="{{route("admin.projects.create")}}">Aggiungi <i class="fa-solid fa-plus"></i></a>
+        <a class="btn btn-small btn-danger"  href="{{route("admin.projects.trash.index")}}">Cestino <i class="fas fa-trash"></i></a>
+      </div>
       <div class="d-flex">
        
         <form action="{{route("admin.projects.index")}}" method="GET" class="d-flex align-items-center my-filtered">
